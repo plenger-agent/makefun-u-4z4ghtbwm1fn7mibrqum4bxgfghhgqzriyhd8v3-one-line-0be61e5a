@@ -13,7 +13,8 @@ MAX_CHARS = 140
 
 def main():
     line = LINE.strip()
-    assert 1 <= len(line) <= MAX_CHARS, "line must be 1-140 characters"
+    if not 1 <= len(line) <= MAX_CHARS:
+        raise ValueError(f"line must be 1-{MAX_CHARS} characters, got {len(line)}")
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
